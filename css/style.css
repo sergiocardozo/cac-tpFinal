@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600,700,900');
+
+body {
+    font-family: 'Titillium Web', sans-serif;
+    line-height: 1.80857;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.btn{
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    border-radius: 40px/50px;
+    transition: all 0.5s ease 0s;
+}
+
+/* HEADER */
+nav {
+    background: #000;
+}
+
+nav ul li a {
+    font-size: 20px !important;
+}
+
+/* MAIN */
+.carousel-item img {
+    position: relative;
+    filter: brightness(0.3);
+    height: 100vh;
+    background: no-repeat center center scroll;
+    background-size: cover;
+}
+
+.carousel-item {
+    height: 40rem;
+}
+
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+}
+
+main p {
+    margin: 0;
+}
+.grd1 {
+    color: #ffffff;
+    background: #111111;
+}
+
+/* ABOUT */
+.section {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    padding: 70px 0;
+}
+.section .about {
+    background-color: #ffffff;
+}
+
+/* CLIENTES */
+.card {
+    box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.card_opciones:hover {
+    cursor: pointer;
+    background-color: rgb(20, 85, 226);
+    transition: transform 0.3s;
+    transform: scale(0.9);
+    color: white;
+}
+
+.card-options {
+    transition: transform 0.3s;
+    transform: scale(0.9);
+    color: white;
+}
+
+.card_opciones_junior:hover {
+    cursor: pointer;
+    background-color: gold;
+    transition: transform 0.3s;
+    transform: scale(0.9);
+
+}
