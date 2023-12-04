@@ -118,7 +118,10 @@ main p {
     box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* CLIENTES */
+/* SERVICIOS */
+.sv {
+    background-color: #000;
+}
 .profile-card-2 {
     max-width: 300px;
     background-color: #FFF;
@@ -180,8 +183,15 @@ main p {
 .profile-card-2:hover .profile-username {
     bottom: 60px;
 }
+/* CONTACTO */
+.contacto {
+    background-color: #6B240C;
+}
+.mensaje {
+    background-color: #111111;
+}
 
-
+/* FOOTER */
 footer {
     background-color: #000;
 }
