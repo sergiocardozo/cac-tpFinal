@@ -4,6 +4,7 @@ window.addEventListener('load', initHandlers);
 const btnCrear = document.getElementById('btnCrear');
 
 function initHandlers() {
+    getTurnos();
     swiperInit();
     btnCrear.addEventListener('click', (e) => {
         e.preventDefault();
@@ -11,6 +12,7 @@ function initHandlers() {
     });
     const fechaSeleccionada = document.getElementById('fechaSeleccionada')
     fechaSeleccionada.min = obtenerFechaActual();
+    
 
     const selectCategoriaHora = document.getElementById('selectCategoriaHora');
 
@@ -20,6 +22,7 @@ function initHandlers() {
         llenarRangoHorario();
         selectHoras();
     });
+
 }
 
 function swiperInit() {
@@ -127,7 +130,7 @@ function selectHoras() {
 
     const fechaSeleccionadaInput = document.getElementById('fechaSeleccionada');
     const fechaSeleccionadaString = fechaSeleccionadaInput.value;
-    
+
     const fechaSeleccionadaArray = fechaSeleccionadaString.split("-");
     const fechaSeleccionada = new Date(fechaSeleccionadaArray[0], fechaSeleccionadaArray[1] - 1, fechaSeleccionadaArray[2]);
     const fechaActual = new Date();
@@ -168,7 +171,7 @@ function marcarHoraSeleccionada() {
 }
 
 function crearTurno() {
-    
+
     const turno = {
         nombre: document.getElementById('nombre').value,
         apellido: document.getElementById('apellido').value,
@@ -178,7 +181,7 @@ function crearTurno() {
         tipo_corte: document.getElementById('selectCategoriaCorte').value
     }
 
-    fetch('http://localhost:8080/web-app/api/orador/nuevo', {
+    fetch('http://localhost:8080/web-app/api/turnos', {
         method: 'POST',
         body: JSON.stringify(turno),
     }).then(response => response.json())
@@ -188,3 +191,98 @@ function crearTurno() {
         .catch(err => console.log(err));
 
 }
+
+function getTurnos() {
+    const resp = fetch('http://localhost:8080/web-app/api/turnos');
+
+    resp.then(response => response.json())
+        .then(data => mostrarLista(data))
+        .catch(err => console.log(err));
+}
+
+function mostrarLista(data) {
+
+    saveTurnosInLocalStorage(data);
+
+    const turnos = data;
+    //console.log(turnos);
+    let rows = '';
+    for (let turno of turnos) {
+        //console.log(turno);
+        rows += `
+        <tr>
+            <th scope="row">${turno.id}</th>
+                <td>${turno.nombre} ${turno.apellido}</td>
+                <td>${turno.mail}</td>
+                <td>${turno.fecha_turno} ${turno.hora_turno}</td>
+                <td>${turno.tipo_corte}</td>
+                <td>
+                    <button class="btnEditar btn btn-primary" data-id="${turno.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">Modificar</button>
+                    <button class="btnCancelar" data-id="${turno.id}">Cancelar</button>
+                </td>
+        `
+    }
+    document.getElementById('turnosRows').innerHTML = rows;
+
+    const btnCancelar = document.getElementsByClassName('btnCancelar');
+    for (const btnCancel of btnCancelar) {
+        btnCancel.addEventListener('click', () => {
+            const idCancelar = btnCancel.getAttribute('data-id');
+            console.log(idCancelar);
+            cancelarTurno(idCancelar);
+        })
+    }
+
+    const btnModificar = document.getElementsByClassName('btnEditar');
+    for (const btnEditar of btnModificar) {
+        btnEditar.addEventListener('click', () => {
+            const idEditar = btnEditar.getAttribute('data-id');
+            console.log(idEditar);
+            editarTurno(idEditar);
+        })
+    }
+}
+
+function getTurnosFromLocalStorage() {
+    const turnos = localStorage.getItem('turnos');
+    if(turnos)
+        return JSON.parse(turnos);
+    return [];
+}
+
+function saveTurnosInLocalStorage(data) {
+    localStorage.setItem('turnos', JSON.stringify(data));
+}
+
+function editarTurno(id) {
+    const turnos = getTurnosFromLocalStorage();
+    console.log(turnos)
+    const turnosBuscados = turnos.find(o => o.id == id)
+
+    console.log(turnosBuscados);
+    document.getElementById('nombreNew').value = turnosBuscados.nombre;
+    document.getElementById('apellidoNew').value = turnosBuscados.apellido;
+    document.getElementById('mailNew').value = turnosBuscados.mail;
+    const fechaSeleccionadaNew = document.getElementById('fechaSeleccionadaNew');
+    fechaSeleccionadaNew.min = obtenerFechaActual();
+    
+    document.getElementById('selectCategoriaHoraNew').value = turnosBuscados.hora_turno;
+    document.getElementById('selectCategoriaCorteNew').value = turnosBuscados.tipo_corte;
+
+}
+function cancelarTurno(id) {
+    if (!confirm('SEGURO?')) {
+        return;
+    }
+
+    fetch(`http://localhost:8080/web-app/api/turnos?id=${id}`, {
+        method: 'DELETE',
+    }).then(response => response)
+        .then(json => {
+            console.log(json);
+            alert(`baja exitosa: ${id}`);
+            getTurnos();
+        })
+        .catch(err => console.log(err));
+}
+
