@@ -7,12 +7,13 @@
     <title>Jerry Barber</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
 
     <script src="https://kit.fontawesome.com/524839ad54.js" crossorigin="anonymous"></script>
-    <script src="./js/scripts.js" defer></script>
+    <script src="./js/scripts.js" type="module" defer></script>
 
 </head>
 
@@ -32,16 +33,24 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="#home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="#about">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
+                            <a class="nav-link" href="#servicios">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="#clientes">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-success btn-radius btn-brd grd1 butn">
+                                <a class="nav-link" href="./reservaturno.html">Reservá turno</a>
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -49,7 +58,7 @@
         </nav>
     </header>
     <!-- END HEADER -->
-    <main>
+    <main id="home">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="3000">
@@ -76,20 +85,20 @@
 
                         <a href="https://www.instagram.com/jerrybarberia/?utm_source=ig_web_button_share_sheet&igshid=OGQ5ZDc2ODk2ZA=="
                             target="_blank" class="me-2">
-                            <i class="fab fa-instagram"></i>
+                            <i class="fab fa-instagram fs-3 text-white"></i>
                         </a>
                         <a href="https://www.facebook.com/barberiajerry?locale=es_LA" target="_blank">
-                            <i class="fab fa-facebook"></i>
+                            <i class="fab fa-facebook fs-3 text-white"></i>
                         </a>
 
                     </div>
-                    <a href="#" class="btn btn-success btn-radius btn-brd grd1 effect-1 butn mt-2">Reservá Turno</a>
+                    <a href="./reservaturno.html" class="btn btn-success btn-radius btn-brd grd1 effect-1 butn mt-2">Reservá Turno</a>
                 </div>
             </div>
         </div>
     </main>
 
-    <section>
+    <section id="about">
         <div class="section about">
             <div class="container">
                 <div class="row align-items-center">
@@ -219,9 +228,49 @@
     </section>
     <!-- END SERVICIOS -->
 
+    <!-- CLIENTES -->
+    <section id="clientes">
+        <div class="section tb">
+            <div class="container">
+            <h4 class="fw-bold text-center">Nuestros Clientes</h4>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-01.jpeg" alt="cliente01"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-02.jpeg" alt="cliente02"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-03.jpeg" alt="cliente03"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-04.jpeg" alt="cliente04"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-05.jpeg" alt="cliente05"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-06.jpeg" alt="cliente06"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-07.jpeg" alt="cliente07"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-08.jpeg" alt="cliente08"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-09.jpeg" alt="cliente09"/>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- CONTACTO -->
-    <section>
-        <div class="section">
+    <section id="contacto">
+        <div class="ct">
 
             <div class="row">
 
@@ -310,6 +359,8 @@
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 </body>
 
 </html>
