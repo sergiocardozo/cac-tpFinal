@@ -11,8 +11,8 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/scripts.js" type="module" defer></script>
-
 </head>
 
 <body>
@@ -45,17 +45,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#contacto">Contacto</a>
                         </li>
-                        <li class="nav-item">
-                            <button class="btn btn-success btn-radius btn-brd grd1 butn">
-                                <a class="nav-link" href="./reservaturno.html">Reservá turno</a>
-                            </button>
-                        </li>
+
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-
     <section class="section">
 
         <div class="row">
@@ -66,10 +61,10 @@
                             <div class="col-lg-10">
                                 <div class="card border-0">
                                     <form autocomplete="off" id="form-fecha">
-                                        <div class="card-header bg-dark">
+                                        <div class="card-header bg-dark text-white">
                                             <div
-                                                class="mx-0 mb-0 row justify-content-sm-center justify-content-start px-1">
-                                                <label for="fechaSeleccionada">Selecciona una fecha:</label>
+                                                class="mx-0 mb-0 row justify-content-sm-center justify-content-start px-1 fw-bold">
+                                                <label for="fechaSeleccionada ">Selecciona una fecha:</label>
                                                 <input type="date" id="fechaSeleccionada" required>
                                             </div>
                                         </div>
@@ -93,15 +88,16 @@
                                 <div class="row justify-content-center">
                                     <div class="col-md-6 ">
                                         <div class="m-2">
-                                            <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                                            <input type="text" class="form-control" id="nombre" placeholder="Nombre"
+                                                required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 ">
 
                                         <div class="m-2">
-                                            <input type="text" class="form-control" id="apellido"
-                                                placeholder="Apellido">
+                                            <input type="text" class="form-control" id="apellido" placeholder="Apellido"
+                                                required>
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +107,7 @@
 
                                         <div class="m-2">
                                             <input type="email" class="form-control" id="mail"
-                                                placeholder="name@example.com">
+                                                placeholder="name@example.com" required>
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +116,7 @@
                                     <div class="col-md-6 ">
                                         <div class="m-2">
                                             <input type="date" class="form-control" id="fechaMostrada"
-                                                placeholder="fecha" disabled>
+                                                placeholder="fecha" disabled required>
                                         </div>
                                     </div>
 
@@ -128,7 +124,7 @@
                                         <div class="m-2">
 
                                             <select id="selectCategoriaHora" class="form-select form-select-md"
-                                                aria-label="Large select example">
+                                                aria-label="Large select example" required>
                                                 <option selected disabled>Selecciona una hora</option>
                                                 <!-- Opciones de horas se generarán dinámicamente aquí -->
                                             </select>
@@ -139,7 +135,7 @@
                                         <div class="m-2">
 
                                             <select id="selectCategoriaCorte" class="form-select form-select-md"
-                                                aria-label="Large select example">
+                                                aria-label="Large select example" required>
                                                 <option selected disabled>Selecciona tipo de corte</option>
                                                 <option value="Corte">Corte</option>
                                                 <option value="Barba">Barba</option>
@@ -162,48 +158,43 @@
         </div>
     </section>
 
+
     <section class="datos">
-        <div class="">
-            <div class="container">
+        <p class="d-flex justify-content-center gap-1">
+            <a class="btn btn-primary m-5" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+                aria-expanded="false" aria-controls="multiCollapseExample1">Mostrar
+                Reservas</a>
 
+        </p>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                    <div class="card card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre - Apellido</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Fecha y hora</th>
+                                    <th scope="col">Tipo de corte</th>
+                                    <th scope="col">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="turnosRows">
 
-                <p class="d-flex justify-content-center gap-1">
-                    <a class="btn btn-primary m-5" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
-                        aria-expanded="false" aria-controls="multiCollapseExample1">Mostrar Reservas</a>
-
-                </p>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="collapse multi-collapse" id="multiCollapseExample1">
-                            <div class="card card-body">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Nombre - Apellido</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Fecha y hora</th>
-                                            <th scope="col">Tipo de corte</th>
-                                            <th scope="col">Acción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="turnosRows">
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
             </div>
-        </div>
 
+        </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -238,8 +229,7 @@
                                 <div class="row justify-content-center">
                                     <div class="col-md-6 ">
                                         <div class="m-2">
-                                           
-                                                <input type="date" id="fechaSeleccionadaNew" required>
+                                            <input type="date" class="form-control" id="fechaSeleccionadaNew">
                                         </div>
                                     </div>
 
@@ -249,7 +239,6 @@
                                             <select id="selectCategoriaHoraNew" class="form-select form-select-md"
                                                 aria-label="Large select example">
                                                 <option selected disabled>Selecciona una hora</option>
-                                                <!-- Opciones de horas se generarán dinámicamente aquí -->
                                             </select>
                                         </div>
                                     </div>
@@ -257,21 +246,22 @@
                                     <div class="col-md-12 ">
                                         <div class="m-2">
 
-                                            <select id="selectCategoriaCorteNew" class="form-select form-select-md"
+                                            <select id="selectCategoriaNew" class="form-select form-select-md"
                                                 aria-label="Large select example">
                                                 <option selected disabled>Selecciona tipo de corte</option>
                                                 <option value="Corte">Corte</option>
                                                 <option value="Barba">Barba</option>
                                                 <option value="Afeitado Italiano">Afeitado Italiano</option>
-                                                <!-- Opciones de horas se generarán dinámicamente aquí -->
                                             </select>
                                         </div>
                                     </div>
                                 </div>
+
+                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="btnModificar">Modificar</button>
                     </div>
                 </div>
             </div>
@@ -298,6 +288,8 @@
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

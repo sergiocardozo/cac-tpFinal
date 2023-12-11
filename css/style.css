@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600,700,900');
-
 body {
     font-family: 'Titillium Web', sans-serif;
     line-height: 1.80857;
@@ -10,7 +9,7 @@ body {
     height: 100%;
 }
 
-.btn {
+.btns {
     font-family: 'Nunito', sans-serif;
     font-size: 20px;
     font-weight: 700;
