@@ -254,7 +254,7 @@ footer {
 
 #form-turno .card,
 .reservaturno .card {
-    box-shadow: 0px 4px 8px 0px #0a0a0a;
+    box-shadow: 8px 4px 8px 0px #0a0a0a;
     opacity: 0.9;
     background-color: #ffffff;
     padding: 20px;
@@ -262,7 +262,7 @@ footer {
 }
 
 .sectionTabla .card {
-    box-shadow: 0px 4px 8px 0px #7c7a7a;
+    box-shadow: 8px 4px 8px 0px #7c7a7a;
     opacity: 0.7;
     background-color: #ffffff;
     padding: 20px;
@@ -276,7 +276,15 @@ footer {
     box-sizing: border-box;
     background-color: #616161 !important;
     color: #fff !important;
+    box-shadow: 8px 4px 8px 0px #0a0a0a;
+
 }
+#table{
+    box-shadow: 8px 4px 8px 0px #0a0a0a;
+    border-radius: 10px;
+
+}
+
 
 input:focus {
     -moz-box-shadow: none !important;

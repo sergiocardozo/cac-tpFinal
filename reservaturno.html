@@ -59,7 +59,7 @@
                     <div class="container-fluid px-0 px-sm-4 mx-auto">
                         <div class="row justify-content-center mx-0">
                             <div class="col-lg-10">
-                                <div class="card border-0">
+                                <div class="card border-0 mx-4">
                                     <form autocomplete="off" id="form-fecha">
                                         <div class="card-header bg-dark text-white">
                                             <div
@@ -84,7 +84,7 @@
                 <div class="img_form-reserva">
                     <div class="container-fluid px-sm-4">
                         <form action="" class="" id="form-turno">
-                            <div class="card">
+                            <div class="card mx-4">
                                 <div class="row justify-content-center">
                                     <div class="col-md-6 ">
                                         <div class="m-2">
@@ -159,7 +159,7 @@
     </section>
 
 
-    <section class="datos" >
+    <section class="datos">
         <div class="container">
 
             <p class="d-flex justify-content-center gap-1">
@@ -171,22 +171,25 @@
             <div class="row sectionTabla">
                 <div class="col-md-12">
                     <div class="collapse multi-collapse" id="multiCollapseExample1">
-                        <div class="card card-body">
-                            <table class="table" id="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nombre - Apellido</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Fecha y hora</th>
-                                        <th scope="col">Tipo de corte</th>
-                                        <th scope="col">Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="turnosRows">
+                        <div class="card card-body mx-4">
+                            <div class="table-responsive-sm">
+                                <table class="table caption-top table-dark table-hover " id="table">
+                                    <caption class="fw-bold text-center fs-3">Lista de turnos</caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nombre - Apellido</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Fecha y hora</th>
+                                            <th scope="col">Tipo de corte</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="turnosRows">
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
