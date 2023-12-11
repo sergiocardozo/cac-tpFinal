@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jerry Barber</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -20,7 +20,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark shadow fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="./index.html#home">
                     <img src="./assets/logo2.jpg" alt="" width="300px">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -34,16 +34,16 @@
                             <a class="nav-link" href="./index.html#home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
+                            <a class="nav-link" href="./index.html#about">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#servicios">Services</a>
+                            <a class="nav-link" href="./index.html#servicios">Servicios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#clientes">Clientes</a>
+                            <a class="nav-link" href="./index.html#clientes">Clientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contacto">Contacto</a>
+                            <a class="nav-link" href="./index.html#contacto">Contacto</a>
                         </li>
 
                     </ul>
@@ -54,12 +54,12 @@
     <section class="section">
 
         <div class="row">
-            <div class="col-md-6 reservaturno">
+            <div class="col-md-6 reservaturno px-0">
                 <div class="img_select-fecha">
                     <div class="container-fluid px-0 px-sm-4 mx-auto">
                         <div class="row justify-content-center mx-0">
                             <div class="col-lg-10">
-                                <div class="card border-0">
+                                <div class="card border-0 mx-4">
                                     <form autocomplete="off" id="form-fecha">
                                         <div class="card-header bg-dark text-white">
                                             <div
@@ -80,11 +80,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 px-0">
                 <div class="img_form-reserva">
                     <div class="container-fluid px-sm-4">
                         <form action="" class="" id="form-turno">
-                            <div class="card">
+                            <div class="card mx-4">
                                 <div class="row justify-content-center">
                                     <div class="col-md-6 ">
                                         <div class="m-2">
@@ -160,112 +160,121 @@
 
 
     <section class="datos">
-        <p class="d-flex justify-content-center gap-1">
-            <a class="btn btn-primary m-5" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
-                aria-expanded="false" aria-controls="multiCollapseExample1">Mostrar
-                Reservas</a>
+        <div class="container">
 
-        </p>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="collapse multi-collapse" id="multiCollapseExample1">
-                    <div class="card card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nombre - Apellido</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Fecha y hora</th>
-                                    <th scope="col">Tipo de corte</th>
-                                    <th scope="col">Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody id="turnosRows">
+            <p class="d-flex justify-content-center gap-1">
+                <a class="btn btn-primary m-5" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+                    aria-expanded="false" aria-controls="multiCollapseExample1">Mostrar
+                    Reservas</a>
 
-                            </tbody>
-                        </table>
+            </p>
+            <div class="row sectionTabla">
+                <div class="col-md-12">
+                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                        <div class="card card-body mx-4">
+                            <div class="table-responsive-sm">
+                                <table class="table caption-top table-dark table-hover " id="table">
+                                    <caption class="fw-bold text-center fs-3">Lista de turnos</caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nombre - Apellido</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Fecha y hora</th>
+                                            <th scope="col">Tipo de corte</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="turnosRows">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" class="" id="form-turno">
+                                <div class="card">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6 ">
+                                            <div class="m-2">
+                                                <input type="text" class="form-control" id="nombreNew"
+                                                    placeholder="Nombre">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 ">
+
+                                            <div class="m-2">
+                                                <input type="text" class="form-control" id="apellidoNew"
+                                                    placeholder="Apellido">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-12">
+
+                                            <div class="m-2">
+                                                <input type="email" class="form-control" id="mailNew"
+                                                    placeholder="name@example.com">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6 ">
+                                            <div class="m-2">
+                                                <input type="date" class="form-control" id="fechaSeleccionadaNew">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 ">
+                                            <div class="m-2">
+
+                                                <select id="selectCategoriaHoraNew" class="form-select form-select-md"
+                                                    aria-label="Large select example">
+                                                    <option selected disabled>Selecciona una hora</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 ">
+                                            <div class="m-2">
+
+                                                <select id="selectCategoriaNew" class="form-select form-select-md"
+                                                    aria-label="Large select example">
+                                                    <option selected disabled>Selecciona tipo de corte</option>
+                                                    <option value="Corte">Corte</option>
+                                                    <option value="Barba">Barba</option>
+                                                    <option value="Afeitado Italiano">Afeitado Italiano</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" id="btnModificar">Modificar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" class="" id="form-turno">
-                            <div class="card">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6 ">
-                                        <div class="m-2">
-                                            <input type="text" class="form-control" id="nombreNew" placeholder="Nombre">
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-6 ">
-
-                                        <div class="m-2">
-                                            <input type="text" class="form-control" id="apellidoNew"
-                                                placeholder="Apellido">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row justify-content-center">
-                                    <div class="col-md-12">
-
-                                        <div class="m-2">
-                                            <input type="email" class="form-control" id="mailNew"
-                                                placeholder="name@example.com">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row justify-content-center">
-                                    <div class="col-md-6 ">
-                                        <div class="m-2">
-                                            <input type="date" class="form-control" id="fechaSeleccionadaNew">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 ">
-                                        <div class="m-2">
-
-                                            <select id="selectCategoriaHoraNew" class="form-select form-select-md"
-                                                aria-label="Large select example">
-                                                <option selected disabled>Selecciona una hora</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12 ">
-                                        <div class="m-2">
-
-                                            <select id="selectCategoriaNew" class="form-select form-select-md"
-                                                aria-label="Large select example">
-                                                <option selected disabled>Selecciona tipo de corte</option>
-                                                <option value="Corte">Corte</option>
-                                                <option value="Barba">Barba</option>
-                                                <option value="Afeitado Italiano">Afeitado Italiano</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" id="btnModificar">Modificar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
     <footer>
         <div class="container">
@@ -274,7 +283,7 @@
                 <div class="col-12">
                     <div class="row my-4 row-1 no-gutters">
                         <div class="col-sm-12 justify-content-center col-auto text-center">
-                            <small>Todos los Derechos Reservados &#9400; Copyright 2023</small>
+                            <small>Todos los Derechos Reservados &#9400; Copyright 2023 - Sergio Cardozo</small>
                         </div>
 
                     </div>
