@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jerry Barber</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="https://kit.fontawesome.com/524839ad54.js" crossorigin="anonymous"></script>
 
+    <script src="https://kit.fontawesome.com/524839ad54.js" crossorigin="anonymous"></script>
+    <script src="./js/scripts.js" type="module" defer></script>
 
 </head>
 
@@ -30,16 +33,24 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="#home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="#about">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
+                            <a class="nav-link" href="#servicios">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="#clientes">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-success btn-radius btn-brd grd1 butn">
+                                <a class="nav-link" href="./reservaturno.html">Reservá turno</a>
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -47,7 +58,7 @@
         </nav>
     </header>
     <!-- END HEADER -->
-    <main>
+    <main id="home">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="3000">
@@ -65,29 +76,29 @@
         <div class="container text text-center ">
             <div class="card bg-transparent border-0">
                 <div class="card-body text-white">
-                    <img src="./assets/barber.png" alt="" width="200px">
+                    <img src="./assets/barber.png" alt="" width="200px" class="brillo">
                     <h1 class="card-title text-uppercase fw-bold">jerry barber</h1>
-                    <h5 class="fw-semibold">Bienvenidos al CLUB!
-                    </h5>
-                    <i class="fas fa-map-pin">Cerretti 854, Adrogué.</i>
-                    <i class="fas fa-phone">11-3955-4031</i>
+                    <h5 class="fw-semibold">Bienvenidos al CLUB! </h5>
+                    <i class="fas fa-map-pin m-2"> Cerretti 854, Adrogué.</i>
+                    <i class="fas fa-phone"> 11-3955-4031</i>
                     <div class="d-flex justify-content-center pt-3 ">
 
-                        <a href="https://www.instagram.com/jerrybarberia/?utm_source=ig_web_button_share_sheet&igshid=OGQ5ZDc2ODk2ZA==" target="_blank">
-                            <i class="fab fa-instagram"></i>
+                        <a href="https://www.instagram.com/jerrybarberia/?utm_source=ig_web_button_share_sheet&igshid=OGQ5ZDc2ODk2ZA=="
+                            target="_blank" class="me-2">
+                            <i class="fab fa-instagram fs-3 text-white"></i>
                         </a>
                         <a href="https://www.facebook.com/barberiajerry?locale=es_LA" target="_blank">
-                            <i class="fab fa-facebook"></i>
+                            <i class="fab fa-facebook fs-3 text-white"></i>
                         </a>
-                            
-                        <!-- <a href="#" class="btn btn-light btn-radius btn-brd grd1 effect-1 butn">Contactanos</a> -->
+
                     </div>
+                    <a href="./reservaturno.html" class="btn btn-success btn-radius btn-brd grd1 effect-1 butn mt-2">Reservá Turno</a>
                 </div>
             </div>
         </div>
     </main>
 
-    <section>
+    <section id="about">
         <div class="section about">
             <div class="container">
                 <div class="row align-items-center">
@@ -114,66 +125,242 @@
                         </div>
                     </div><!-- end col -->
                 </div><!-- end row -->
+
+                <div class="row navpills">
+                    <div class="col-md-3">
+                        <!-- Tabs nav -->
+                        <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist"
+                            aria-orientation="vertical">
+                            <a class="nav-link mb-3 p-3 shadow active" id="v-pills-home-tab" data-bs-toggle="pill"
+                                href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                                <i class="fa fa-bullseye mr-2"></i>
+                                <span class="fw-bold small text-uppercase">Nuestra Misión</span>
+                            </a>
+
+                            <a class="nav-link mb-3 p-3 shadow" id="v-pills-profile-tab" data-bs-toggle="pill"
+                                href="#v-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                <i class="fa fa-calendar-minus-o mr-2"></i>
+                                <span class="fw-bold small text-uppercase">¿Porqué Nosotros?</span>
+                            </a>
+
+                            <a class="nav-link mb-3 p-3 shadow" id="v-pills-messages-tab" data-bs-toggle="pill"
+                                href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
+                                aria-selected="false">
+                                <i class="fa fa-star mr-2"></i>
+                                <span class="fw-bold small text-uppercase">Sobre Nosotros</span>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-9">
+                        <!-- Tabs content -->
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade shadow rounded bg-white show active p-4" id="v-pills-home"
+                                role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <h4 class="mb-4">Nuestra Misión</h4>
+                                <p class="text-muted mb-2">Desde 2015 nos dedicamos a mejorar la imagen de nuestros
+                                    clientes.
+                                    El objetivo es brindar el mejor servicio y marcar tendencia.
+                                </p>
+                            </div>
+
+                            <div class="tab-pane fade shadow rounded bg-white p-4" id="v-profile" role="tabpanel"
+                                aria-labelledby="v-pills-profile-tab">
+                                <h4 class="font-italic mb-4">¿Porqué Nosotros?</h4>
+                                <p class="font-italic text-muted mb-2">Por eso construimos un espacio en el mundo para
+                                    que disfrutes y te sientas cómodo.
+                                    Queremos que <span class="fw-bold">Jerry</span> sea tu lugar donde, más allá de
+                                    cambiar tu look,
+                                    puedas relajarte, disfrutar de una buena cerveza y encontrarte con amigos.</p>
+                            </div>
+
+                            <div class="tab-pane fade shadow rounded bg-white p-4" id="v-pills-messages" role="tabpanel"
+                                aria-labelledby="v-pills-messages-tab">
+                                <h4 class="font-italic mb-4">Sobre Nosotros</h4>
+                                <p class="font-italic text-muted mb-2">El concepto desde aquel entonces hasta ahora, ha
+                                    ido migrando año tras año, lo cual hace que hoy en dia se destaque como peluquería y
+                                    barbería clásica tradicional de los años 20.
+                                    Se caracteriza por sus afeitados clásicos a navaja con toallas calientes y frias
+                                    como asi también por sus arreglos de barbas , cortes de estilo europeo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <!-- END ABOUT -->
 
-    <section id="ticket" class="mt-4">
+    <!-- Servicios -->
+    <section id="servicios" class="section sv">
+        <div class="container">
+            <h4 class="fw-bold text-center text-white">Nuestros Servicios</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-card-2"><img src="./assets/servicios-03.jpg" class="img-fluid">
+                        <div class="profile-name">CORTE</div>
+                        <div class="profile-username">Corte de cabello con lavado incluído y terminaciones a navaja.
+                        </div>
 
-        <div class="row pt-2 justify-content-center ">
-            <div id="card-estudiante"
-                class=" card-options card_opciones col-md-4 col-12 card me-4 mt-3 border border-primary"
-                style="width: 18rem;">
+                    </div>
+                </div>
 
-                <div class=" card-body text-center">
+                <div class="col-md-4">
+                    <div class="profile-card-2">
+                        <img src="./assets/servicios-02.jpg" class="img-fluid shadow">
+                        <div class="profile-name">BARBA</div>
+                        <div class="profile-username">Arreglo de barba con fomento caliente y frío. Terminaciones a
+                            navaja y productos para el cuidado de tu piel y barba.</div>
 
+                    </div>
+                </div>
 
-                    <h2 class="card-title mt-2">Estudiante</h2>
-                    <h4 class="mt-4 fw-normal">Tienen un descuento</h4>
-                    <h3 class="mt-4 fw-bold">80%</h3>
-                    <p class="mt-4 mb-2 fw-medium text-body-secondary">* presentar documentación</p>
+                <div class="col-md-4">
+                    <div class="profile-card-2"><img src="./assets/cliente-01.jpg" class="img-fluid">
+                        <div class="profile-name text-uppercase">Afeitado Italiano</div>
+                        <div class="profile-username">Afeitado italiano con dos toallas caliente, una fría, aceites
+                            aromáticos y productos para el cuidado de la piel.</div>
+                    </div>
                 </div>
             </div>
-
-            <div id="card-trainee"
-                class=" card-options card_opciones col-md-4 col-12 card me-4 mt-3 border border-primary"
-                style="width: 18rem;">
-
-
-
-                <div class="card-body text-center">
-
-                    <h2 class="card-title mt-2">Trainee</h2>
-                    <h4 class="mt-4 fw-normal">Tienen un descuento</h4>
-                    <h3 class="mt-4 fw-bold">50%</h3>
-                    <p class="mt-4 mb-2 fw-medium text-body-secondary">* presentar documentación</p>
-                </div>
-            </div>
-
-            <div id="card-junior"
-                class="card-options card_opciones_junior col-md-4 col-12 card me-4 mt-3 border border-warning"
-                style="width: 18rem;">
-
-
-
-
-                <div class="card-body text-center">
-
-                    <h2 class="card-title mt-2">Junior</h2>
-                    <h4 class="mt-4 fw-normal">Tienen un descuento</h4>
-                    <h3 class="mt-4 fw-bold">15%</h3>
-                    <p class="mt-4 mb-2 fw-medium text-body-secondary">* presentar documentación</p>
-                </div>
-            </div>
-
         </div>
     </section>
+    <!-- END SERVICIOS -->
+
+    <!-- CLIENTES -->
+    <section id="clientes">
+        <div class="section tb">
+            <div class="container">
+            <h4 class="fw-bold text-center">Nuestros Clientes</h4>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-01.jpeg" alt="cliente01"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-02.jpeg" alt="cliente02"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-03.jpeg" alt="cliente03"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-04.jpeg" alt="cliente04"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-05.jpeg" alt="cliente05"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-06.jpeg" alt="cliente06"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-07.jpeg" alt="cliente07"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-08.jpeg" alt="cliente08"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./assets/clientes-09.jpeg" alt="cliente09"/>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CONTACTO -->
+    <section id="contacto">
+        <div class="ct">
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3276.2912965749497!2d-58.39014032485939!3d-34.79861256781609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcd3765b1cd7e7%3A0xd0b765da956a9ed2!2sJerry%20Barber%C3%ADa!5e0!3m2!1ses!2sar!4v1701661424112!5m2!1ses!2sar"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="col-md-4 contacto text-white p-4">
+                    <h3 class="fw-bold">Contáctanos!</h3>
+
+                    <p class="fw-semibold mt-3">Podés hacerlo a través de cualquiera de los medios que detallamos más
+                        abajo o
+                        utilizando el
+                        formulario de contacto.</p>
+                    <div class="d-flex flex-column mt-5">
+                        <i class="fas fa-envelope"> INFO@JERRYBARBER.COM</i>
+                        <i class="fas fa-map-pin m-2"> Cerretti 854, Adrogué.</i>
+                        <i class="fas fa-phone"> 11-3955-4031</i>
+                        <div class="flex-row justify-content-center pt-3 text-center fs-5">
+
+                            <a href="https://www.instagram.com/jerrybarberia/?utm_source=ig_web_button_share_sheet&igshid=OGQ5ZDc2ODk2ZA=="
+                                target="_blank" class="me-2">
+                                <i class="fab fa-instagram text-white"> Instagram</i>
+                            </a>
+                            <a href="https://www.facebook.com/barberiajerry?locale=es_LA" target="_blank">
+                                <i class="fab fa-facebook text-white"> Facebook</i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4 mensaje text-white p-4">
+                    <h3 class="fw-bold">Escribinos!</h3>
+
+                    <form action="" class="mt-5">
+                        <div class="m-3">
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                        </div>
+
+                        <div class="m-3">
+                            <input type="text" class="form-control" id="apellido" placeholder="Apellido">
+                        </div>
+
+                        <div class="m-3">
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                        </div>
+
+                        <div class="m-3">
+                            <textarea class="form-control" id="mensaje" rows="3"
+                                placeholder="Deja tu mensaje"></textarea>
+                        </div>
+
+                        <div class="m-3">
+                            <button class="btn btn-success btn-radius btn-brd grd1 effect-1 butn">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="container">
+
+            <div class="row  mt-0 pt-0 row-1 mb-0  px-sm-3 px-2 text-white">
+                <div class="col-12">
+                    <div class="row my-4 row-1 no-gutters">
+                        <div class="col-sm-12 justify-content-center col-auto text-center">
+                            <small>Todos los Derechos Reservados &#9400; Copyright 2023</small>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script async src="//www.instagram.com/embed.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 </body>
 
 </html>
