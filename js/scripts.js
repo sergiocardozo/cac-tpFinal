@@ -1,7 +1,6 @@
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
 
 window.addEventListener('load', initHandlers);
-
 const btnCrear = document.getElementById('btnCrear');
 const btnMod = document.getElementById('btnModificar');
 const selectCategoriaHora = document.getElementById('selectCategoriaHora');
@@ -10,7 +9,6 @@ function initHandlers() {
 
     getTurnos();
     swiperInit();
-
     /* Crear turnos POST */
     btnCrear.addEventListener('click', (e) => {
         e.preventDefault();
@@ -35,6 +33,7 @@ function initHandlers() {
 
     })
 }
+
 
 function swiperInit() {
     var swiper = new Swiper(".mySwiper", {
@@ -69,6 +68,8 @@ function obtenerFechaActual() {
 function seleccionarFecha(fechaElegida) {
 
     const fechaSeleccionada = document.getElementById(fechaElegida);
+    const horasContainer = document.getElementById('horasContainer');
+
     const valor = fechaSeleccionada.value;
     const fechaActual = new Date();
     const diaSeleccionado = new Date(valor).getDay();
@@ -79,10 +80,15 @@ function seleccionarFecha(fechaElegida) {
     if (diaSeleccionado === 5 || diaSeleccionado === 6) {
         message('Error', "No se permite seleccionar sábados ni domingos.", 'error');
         fechaSeleccionada.value = '';
+        horasContainer.classList.add('d-none');
     }
-    if (diferenciaEnDias > 15) {
+    else if (diferenciaEnDias > 15) {
         message('Error', "Solo puedes seleccionar fechas hasta 15 días en el futuro.", 'error');
         fechaSeleccionada.value = '';
+        horasContainer.classList.add('d-none');
+
+    } else {
+        horasContainer.classList.remove('d-none');
 
     }
     if (fechaElegida == 'fechaSeleccionada') {
@@ -122,16 +128,18 @@ function selectHoras(data, idhora, fecha) {
             option.value = `${item.id_hora}`;
             option.textContent = `${item.nombre_hora}`;
             option.disabled = true;
-            selectCategoriaHora.appendChild(option);
 
         } else {
             option.value = `${item.id_hora}`;
             option.textContent = `${item.nombre_hora}`;
-            selectCategoriaHora.appendChild(option);
         }
+        selectCategoriaHora.appendChild(option);
+
     });
 }
 
+
+/* Funcion para marcar el horario en las celdas desde el select */
 function marcarHorarioCeldas() {
     const selectCategoriaHora = document.getElementById('selectCategoriaHora');
     const opcionSeleccionada = selectCategoriaHora.options[selectCategoriaHora.selectedIndex];
@@ -152,6 +160,7 @@ function marcarHorarioCeldas() {
     }
 }
 
+/* Funcion que genera dinamicamente las horas y verifica si las opciones estan disponibles */
 function llenarRangoHorario(data) {
     const horasContainer = document.getElementById('horasContainer');
     horasContainer.innerHTML = '';
@@ -183,11 +192,12 @@ function llenarRangoHorario(data) {
 
         if (fechaHoraSeleccionada < fechaActual || horaYaSeleccionada) {
             divHora.classList.add('disabled');
+
         } else {
             divHora.addEventListener('click', function () {
                 const celdas = document.getElementsByClassName('cell');
                 for (const celda of celdas) {
-                    celda.classList.remove('bg-success', 'text-white');
+                    celda.classList.remove('bg-success', 'text-white', 'd-none');
                 }
 
                 divHora.classList.add('bg-success', 'text-white');
@@ -213,6 +223,10 @@ function llenarRangoHorario(data) {
 /* POST */
 function crearTurno() {
 
+    const form_fecha = document.getElementById('form-fecha');
+    const form_turno = document.getElementById('form-turno');
+    const celdasContainer = document.getElementById('horasContainer');
+
     const turno = {
         nombre: document.getElementById('nombre').value,
         apellido: document.getElementById('apellido').value,
@@ -229,12 +243,17 @@ function crearTurno() {
         .then(json => {
             console.log(json);
             getTurnos();
+            form_fecha.reset();
+            form_turno.reset();
+            celdasContainer.innerHTML = '';
             message("Turno creado", "El turno fue creado exitosamente", "success")
 
         })
         .catch(err => message('Hubo un error', `Error al crear el turno, verifique los datos ingresados`, "error"));
 
 }
+
+/* Funcion para crear un mensaje generico */
 function message(title, text, icon) {
     Swal.fire({
         title: title,
