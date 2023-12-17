@@ -54,6 +54,15 @@ function swiperInit() {
     });
 }
 
+function createSpinner() {
+    const img = document.createElement('img');
+
+    img.setAttribute('src', "./assets/giphy.gif");
+    img.setAttribute('alt', 'Imagen Spinner');
+    img.width = 100;
+    img.classList.add('brillo');
+    return img
+}
 
 /* Funcion para obtener la fecha actual */
 function obtenerFechaActual() {
@@ -72,7 +81,7 @@ function seleccionarFecha(fechaElegida) {
 
     const valor = fechaSeleccionada.value;
     const fechaActual = new Date();
-    const diaSeleccionado = new Date(valor).getDay();
+    const diaSeleccionado = new Date(valor).getDay();   
     const fechaSeleccionadaValue = new Date(fechaSeleccionada.value);
     const diferenciaEnDias = Math.floor((fechaSeleccionadaValue - fechaActual) / (1000 * 60 * 60 * 24));
 
@@ -226,6 +235,8 @@ function crearTurno() {
     const form_fecha = document.getElementById('form-fecha');
     const form_turno = document.getElementById('form-turno');
     const celdasContainer = document.getElementById('horasContainer');
+    spinnerContainer.innerHTML = '';
+    spinnerContainer.appendChild(createSpinner());
 
     const turno = {
         nombre: document.getElementById('nombre').value,
@@ -241,15 +252,23 @@ function crearTurno() {
         body: JSON.stringify(turno),
     }).then(response => response.json())
         .then(json => {
-            console.log(json);
-            getTurnos();
-            form_fecha.reset();
-            form_turno.reset();
-            celdasContainer.innerHTML = '';
-            message("Turno creado", "El turno fue creado exitosamente", "success")
+            setTimeout(() => {
+                spinnerContainer.innerHTML = '';
+                getTurnos();
+                form_fecha.reset();
+                form_turno.reset();
+                celdasContainer.innerHTML = '';
+                message("Turno creado", "El turno fue creado exitosamente", "success")
+
+            }, 1000);
 
         })
-        .catch(err => message('Hubo un error', `Error al crear el turno, verifique los datos ingresados`, "error"));
+        .catch(err => {
+            setTimeout(() => {
+                spinnerContainer.innerHTML = '';
+                message('Hubo un error', `Error al crear el turno, verifique los datos ingresados`, "error")
+            }, 1000);
+        });
 
 }
 
@@ -283,14 +302,16 @@ function getTurnos() {
         .then(data => {
             mostrarLista(data)
         })
-        .catch(err => message('Hubo un error', `${err}`, "error"));
+        .catch(err => {
+            message('Hubo un error', `${err}`, "error")
+        });
 }
 
 function mostrarLista(data) {
     const horas = getFromLocalStorage('horas')
     saveTurnosInLocalStorage('turnos', data);
     const turnos = data;
-    console.log(data);
+    //    console.log(data);
     let rows = '';
     for (let turno of turnos) {
         const fechaTurnoArray = turno.fecha_turno;
@@ -327,6 +348,7 @@ function mostrarLista(data) {
             editarTurno(idEditar);
             const fechaSeleccionadaNew = document.getElementById('fechaSeleccionadaNew')
             fechaSeleccionadaNew.min = obtenerFechaActual();
+            selectHoras(horas, 'selectCategoriaHoraNew', 'fechaSeleccionadaNew')
 
             fechaSeleccionadaNew.addEventListener('change', () => {
                 selectHoras(horas, 'selectCategoriaHoraNew', 'fechaSeleccionadaNew')
@@ -369,10 +391,10 @@ function actualizarTurno() {
     const mail = document.getElementById('mailNew').value;
     const fecha_turno = document.getElementById('fechaSeleccionadaNew').value
     const id_hora = document.getElementById('selectCategoriaHoraNew').value;
-    console.log(id_hora);
     const nombre_hora = document.getElementById('selectCategoriaHoraNew').textContent;
     const tipo_corte = document.getElementById('selectCategoriaNew').value;
-
+    spinnerContainer.innerHTML = '';
+    spinnerContainer.appendChild(createSpinner());
     const turno = {
         nombre,
         apellido,
@@ -398,15 +420,25 @@ function actualizarTurno() {
                 body: JSON.stringify(turno),
             }).then(response => response)
                 .then(json => {
+                    
                     removerTurnoSelect();
                     getTurnos();
                 })
-                .catch(err => message('Hubo un error', `${err}`, "error"));
-            Swal.fire({
-                title: "Modificado",
-                text: `El turno con id ${turnoSelect.id} fue modificado exitosamente`,
-                icon: "success"
-            });
+                .catch(err => {
+                    setTimeout(() => {
+                        spinnerContainer.innerHTML = '';
+                        message('Hubo un error', `${err}`, "error")
+                    }, 2000);
+                });
+            setTimeout(() => {
+                Swal.fire({
+                    title: "Modificado",
+                    text: `El turno con id ${turnoSelect.id} fue modificado exitosamente`,
+                    icon: "success"
+                });
+            }, 1000);
+            spinnerContainer.innerHTML = '';
+
         }
     });
 
@@ -431,6 +463,9 @@ function editarTurno(id) {
 
 function cancelarTurno(id) {
 
+    spinnerContainer.innerHTML = '';
+    spinnerContainer.appendChild(createSpinner());
+
     Swal.fire({
         title: "Estas seguro?",
         text: "No vas a poder revertir tu decisión!",
@@ -445,14 +480,25 @@ function cancelarTurno(id) {
                 method: 'DELETE',
             }).then(response => response)
                 .then(json => {
-                    getTurnos();
+                    setTimeout(() => {
+                        spinnerContainer.innerHTML = '';
+                        getTurnos();
+                    }, 1000);
                 })
-                .catch(err => message('Hubo un error', `${err}`, "error"));
-            Swal.fire({
-                title: "Borrado",
-                text: `El turno con id ${id} fue borrado exitosamente`,
-                icon: "success"
-            });
+                .catch(err => {
+                    setTimeout(() => {
+                        spinnerContainer.innerHTML = '';
+                        message('Hubo un error', `${err}`, "error")
+                    }, 1000);
+                });
+            setTimeout(() => {
+                spinnerContainer.innerHTML = '';
+                Swal.fire({
+                    title: "Borrado",
+                    text: `El turno con id ${id} fue borrado exitosamente`,
+                    icon: "success"
+                })
+            }, 1000);
         }
     });
 }
