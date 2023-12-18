@@ -113,6 +113,9 @@ main p {
     filter: brightness(0.5);
 
 }
+.opacidad {
+    opacity: 0.8;
+}
 
 /* ABOUT */
 .section {
