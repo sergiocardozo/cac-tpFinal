@@ -26,10 +26,10 @@ async function handleLogin(e) {
 
     // Simulación de respuesta del backend
     // Asumimos que la API devuelve un objeto con datos de usuario y un token
-    // Y que el email 'admin@jerry.com' es un administrador
+    // Y que el email 'admin' es un administrador
     let mockUser, mockToken;
-    if (email === 'admin@jerry.com' && password === 'admin123') {
-        mockUser = { id: 1, name: 'Admin Jerry', email: 'admin@jerry.com', role: 'Admin' };
+    if (email === 'admin' && password === 'admin') {
+        mockUser = { id: 1, name: 'Admin Jerry', email: 'admin', role: 'Admin' };
         mockToken = 'fake-admin-token-xyz';
     } else if (password === 'user123') { // Para cualquier otro email, asumimos rol de cliente
         mockUser = { id: 2, name: 'Cliente Ejemplo', email: email, role: 'Cliente' };
@@ -126,6 +126,18 @@ function updateNav() {
         reservaButton.appendChild(reservaLink);
         reservaItem.appendChild(reservaButton);
 
+        // Botón Mi Perfil
+        const perfilItem = document.createElement('li');
+        perfilItem.className = 'nav-item auth-nav-item ms-lg-2';
+        const perfilButton = document.createElement('button');
+        perfilButton.className = 'btn btns btn-info btn-radius btn-brd grd1 butn';
+        const perfilLink = document.createElement('a');
+        perfilLink.className = 'nav-link';
+        perfilLink.href = './perfil.html';
+        perfilLink.textContent = 'Mi Perfil';
+        perfilButton.appendChild(perfilLink);
+        perfilItem.appendChild(perfilButton);
+
         // Botón Logout
         const logoutItem = document.createElement('li');
         logoutItem.className = 'nav-item auth-nav-item ms-lg-2';
@@ -136,6 +148,7 @@ function updateNav() {
         logoutItem.appendChild(logoutButton);
 
         navContainer.appendChild(reservaItem);
+        navContainer.appendChild(perfilItem);
         navContainer.appendChild(logoutItem);
 
     } else {
