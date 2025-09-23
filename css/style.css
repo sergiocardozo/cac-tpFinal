@@ -1,8 +1,27 @@
+/* ========= ROOT VARIABLES FOR DARK THEME ========= */
+:root {
+    --dark-bg-primary: #121212;
+    --dark-bg-secondary: #1E1E1E;
+    --dark-text-primary: #E0E0E0;
+    --dark-text-secondary: #A0A0A0;
+    --dark-border-color: #333;
+    --dark-accent-green: #28a745;
+    --dark-accent-blue: #0d6efd;
+    --dark-accent-red: #dc3545;
+    --dark-accent-info: #0dcaf0;
+}
+
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,600,700,900');
 
 body {
     font-family: 'Titillium Web', sans-serif;
-    line-height: 1.80857;
+    line-height: 1.8;
+    background-color: var(--dark-bg-primary);
+    color: var(--dark-text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #fff;
 }
 
 html {
@@ -31,13 +50,18 @@ a i {
     height: 20px;
 }
 
-/* HEADER */
-nav {
-    background: #000;
+/* HEADER & NAVIGATION */
+nav.navbar {
+    background-color: rgba(18, 18, 18, 0.85) !important;
+    backdrop-filter: blur(10px);
 }
 
-nav ul li a {
+nav ul li a.nav-link {
     font-size: 20px !important;
+    color: var(--dark-text-primary) !important;
+}
+nav ul li a.nav-link:hover {
+    color: #fff !important;
 }
 
 
@@ -82,10 +106,9 @@ nav ul li a {
 /* MAIN */
 .carousel-item img {
     position: relative;
-    filter: brightness(0.3);
+    filter: brightness(0.4);
     height: 100vh;
-    background: no-repeat center center scroll;
-    background-size: cover;
+    object-fit: cover;
 }
 
 .carousel-item {
@@ -117,52 +140,37 @@ main p {
     opacity: 0.8;
 }
 
-/* ABOUT */
+/* SECTIONS */
 .section {
-    display: block;
     position: relative;
-    overflow: hidden;
-    padding: 70px 0 0 0;
+    padding: 80px 0;
+    background-color: transparent;
 }
 
-.section .about {
-    background-color: #ffffff;
+.section.about {
+    background-color: var(--dark-bg-secondary);
 }
 
+/* About Pills */
 .nav-pills-custom .nav-link {
-    color: #aaa;
-    background: #fff;
+    color: var(--dark-text-secondary);
+    background: var(--dark-bg-primary);
     position: relative;
 }
 
 .nav-pills-custom .nav-link.active {
-    color: #45b649;
-    background: #fff;
+    color: var(--dark-accent-green);
+    background: var(--dark-bg-primary);
 }
 
-
-/* Add indicator arrow for the active tab */
-@media (min-width: 992px) {
-    .nav-pills-custom .nav-link::before {
-        content: '';
-        display: block;
-        border-top: 8px solid transparent;
-        border-left: 10px solid #fff;
-        border-bottom: 8px solid transparent;
-        position: absolute;
-        top: 50%;
-        right: -10px;
-        transform: translateY(-50%);
-        opacity: 0;
-    }
-}
-
-.nav-pills-custom .nav-link.active::before {
-    opacity: 1;
+.tab-content > .tab-pane {
+    background-color: var(--dark-bg-primary);
+    color: var(--dark-text-primary);
+    border: 1px solid var(--dark-border-color);
 }
 
 .shadow {
-    box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* SERVICIOS */
@@ -171,21 +179,16 @@ main p {
 }
 
 .profile-card-2 {
-    max-width: 300px;
-    background-color: #FFF;
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
-    background-position: center;
+    background-color: var(--dark-bg-secondary);
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    position: relative;
-    margin: 10px auto;
-    cursor: pointer;
     border-radius: 10px;
+    border: 1px solid var(--dark-border-color);
 }
 
 .profile-card-2 img {
-    filter: brightness(0.3);
-
-    transition: all linear 0.40s;
+    filter: brightness(0.5);
+    transition: all linear 0.4s;
 }
 
 .profile-card-2 .profile-name {
@@ -221,36 +224,30 @@ main p {
 }
 
 .profile-card-2:hover img {
-    filter: grayscale(70%);
+    filter: brightness(0.7);
+    transform: scale(1.05);
 }
 
-.profile-card-2:hover .profile-name {
-    bottom: 120px;
+.profile-card-2 .profile-name, .profile-card-2 .profile-username {
+    color: #fff;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
 }
 
-.profile-card-2:hover .profile-username {
-    bottom: 60px;
-}
 
 /* CONTACTO */
 .ct {
     overflow: hidden;
 }
 
-.contacto {
-    background-color: #6B240C;
-}
-
-.mensaje {
-    background-color: #111111;
+.contacto, .mensaje {
+    background-color: var(--dark-bg-secondary);
 }
 
 /* TRABAJOS */
 .tb {
-    background-image: url("../assets/about-bg.jpg");
+    background-image: linear-gradient(rgba(18,18,18,0.7), rgba(18,18,18,0.7)), url("../assets/about-bg.jpg");
     background-position: center center;
     background-size: cover;
-
 }
 
 .swiper {
@@ -274,86 +271,48 @@ main p {
 /* FOOTER */
 footer {
     background-color: #000;
+    padding: 20px 0;
 }
 
-.img_select-fecha {
-    background-image: url("../assets/form.jpg");
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100%;
-}
-
-.img_form-reserva {
-    background-image: url("../assets/form-2.jpg");
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100%;
-}
-
-.container-fluid {
-    padding-top: 120px !important;
-    padding-bottom: 120px !important;
-}
-
-#form-turno .card,
-.reservaturno .card {
-    box-shadow: 8px 4px 8px 0px #0a0a0a;
-    opacity: 0.9;
-    background-color: #ffffff;
-    padding: 20px;
+/* FORMS & TABLES (RESERVATURNO, PERFIL, LOGIN) */
+.reservaturno .card, #form-turno .card, .sectionTabla .card, .login-card {
+    background-color: var(--dark-bg-secondary);
+    color: var(--dark-text-primary);
+    border: 1px solid var(--dark-border-color);
+    padding: 2rem;
     border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
-.sectionTabla .card {
-    box-shadow: 8px 4px 8px 0px #7c7a7a;
-    opacity: 0.7;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+.reservaturno input, #form-turno input, #form-turno select, .login-card input {
+    padding: 12px 20px !important;
+    border: 1px solid var(--dark-border-color) !important;
+    border-radius: 8px;
+    background-color: var(--dark-bg-primary) !important;
+    color: var(--dark-text-primary) !important;
+    box-shadow: none;
 }
 
-.reservaturno input,
-#form-turno input,
-#form-turno select {
-    padding: 10px 20px !important;
-    border: 1px solid #000 !important;
-    border-radius: 10px;
-    box-sizing: border-box;
-    background-color: #616161 !important;
-    color: #fff !important;
-    box-shadow: 8px 4px 8px 0px #0a0a0a;
-
-}
-
-#table {
-    box-shadow: 8px 4px 8px 0px #0a0a0a;
-    border-radius: 10px;
-
-}
-
-
-input:focus {
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    border: 1px solid #512DA8;
-    outline-width: 0;
+.reservaturno input:focus, #form-turno input:focus, #form-turno select:focus, .login-card input:focus {
+    border-color: var(--dark-accent-info) !important;
+    box-shadow: 0 0 5px rgba(13, 202, 240, 0.5) !important;
 }
 
 ::placeholder {
-    color: #fff;
+    color: var(--dark-text-secondary);
     opacity: 1;
 }
+:-ms-input-placeholder { color: var(--dark-text-secondary); }
+::-ms-input-placeholder { color: var(--dark-text-secondary); }
 
-:-ms-input-placeholder {
-    color: #fff;
+.table {
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-::-ms-input-placeholder {
-    color: #fff;
+.table.table-dark {
+    --bs-table-bg: var(--dark-bg-secondary);
+    --bs-table-border-color: var(--dark-border-color);
 }
 
 button:focus {
@@ -431,18 +390,17 @@ thead tr:nth-child(3) th {
 }
 
 .cell {
-    border: 1px solid #BDBDBD;
+    border: 1px solid var(--dark-border-color);
     margin: 2px;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
-
 .cell:hover {
-    border: 1px solid #3D5AFE;
+    border-color: var(--dark-accent-info);
+    background-color: #2a2a2a;
 }
-
-.cell.select {
-    background-color: #3D5AFE;
-    color: #fff;
+.cell.bg-success {
+    background-color: var(--dark-accent-green) !important;
 }
 
 .fa-calendar {
@@ -458,29 +416,22 @@ thead tr:nth-child(3) th {
 }
 
 .cell.disabled {
-    background-color: #eee;
-    color: #999;
+    background-color: #2a2a2a;
+    color: #555;
     cursor: not-allowed;
     pointer-events: none;
     opacity: 0.7;
 }
 
-#spinnerContainer {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-}
-
-/* Login Page Styles */
+/* LOGIN/PROFILE PAGE SPECIFIC STYLES */
 .body-login {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: url("../assets/about-bg.jpg");
+    background-image: linear-gradient(rgba(18,18,18,0.6), rgba(18,18,18,0.6)), url("../assets/about-bg.jpg");
     background-position: center center;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .login-main {
@@ -491,36 +442,19 @@ thead tr:nth-child(3) th {
     padding: 2rem 0;
 }
 
-.login-card {
-    background-color: rgba(0, 0, 0, 0.75);
-    border: 1px solid #444;
-    color: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5) !important;
-}
-
-.login-card .form-label {
-    color: #fff;
-}
-
-.login-card .form-control {
-    background-color: #333 !important;
-    color: #fff !important;
-    border: 1px solid #555 !important;
-}
-
-.login-card .form-control:focus {
-    background-color: #444 !important;
-    border-color: #777 !important;
-    box-shadow: none !important;
-}
-
 .login-card a {
-    color: #64B5F6;
+    color: var(--dark-accent-info);
     text-decoration: none;
 }
-
 .login-card a:hover {
     text-decoration: underline;
+}
+
+/* SPINNER */
+#spinnerContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
 }
