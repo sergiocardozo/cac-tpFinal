@@ -472,3 +472,55 @@ thead tr:nth-child(3) th {
     transform: translate(-50%, -50%);
     z-index: 1000;
 }
+
+/* Login Page Styles */
+.body-login {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url("../assets/about-bg.jpg");
+    background-position: center center;
+    background-size: cover;
+}
+
+.login-main {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.login-card {
+    background-color: rgba(0, 0, 0, 0.75);
+    border: 1px solid #444;
+    color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 8px 10px 10px 1px rgba(0, 0, 0, 0.5) !important;
+}
+
+.login-card .form-label {
+    color: #fff;
+}
+
+.login-card .form-control {
+    background-color: #333 !important;
+    color: #fff !important;
+    border: 1px solid #555 !important;
+}
+
+.login-card .form-control:focus {
+    background-color: #444 !important;
+    border-color: #777 !important;
+    box-shadow: none !important;
+}
+
+.login-card a {
+    color: #64B5F6;
+    text-decoration: none;
+}
+
+.login-card a:hover {
+    text-decoration: underline;
+}

@@ -1,37 +1,44 @@
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
+import { getUserFromStorage } from './auth.js';
 
 window.addEventListener('load', initHandlers);
+
+// Estas constantes pueden no existir en todas las páginas, así que las buscamos de forma segura.
 const btnCrear = document.getElementById('btnCrear');
 const btnMod = document.getElementById('btnModificar');
 const selectCategoriaHora = document.getElementById('selectCategoriaHora');
+const fechaSeleccionada = document.getElementById('fechaSeleccionada');
 
 function initHandlers() {
+    // Swiper solo está en index.html
+    if (document.querySelector('.mySwiper')) {
+        swiperInit();
+    }
 
-    getTurnos();
-    swiperInit();
-    /* Crear turnos POST */
-    btnCrear.addEventListener('click', (e) => {
-        e.preventDefault();
-        crearTurno();
-    });
+    // El resto de la lógica es para reservaturno.html
+    if (window.location.pathname.endsWith('reservaturno.html')) {
+        getTurnos();
+        prefillUserData();
 
-    const fechaSeleccionada = document.getElementById('fechaSeleccionada')
-    fechaSeleccionada.min = obtenerFechaActual();
+        btnCrear.addEventListener('click', (e) => {
+            e.preventDefault();
+            crearTurno();
+        });
 
-    /* event Change */
-    selectCategoriaHora.addEventListener('change', marcarHorarioCeldas);
+        fechaSeleccionada.min = obtenerFechaActual();
 
-    fechaSeleccionada.addEventListener('change', () => {
-        seleccionarFecha('fechaSeleccionada');
-        getHoras();
-    });
+        selectCategoriaHora.addEventListener('change', marcarHorarioCeldas);
 
-    /* btnPUT */
-    btnMod.addEventListener('click', (e) => {
-        e.preventDefault();
-        actualizarTurno();
+        fechaSeleccionada.addEventListener('change', () => {
+            seleccionarFecha('fechaSeleccionada');
+            getHoras();
+        });
 
-    })
+        btnMod.addEventListener('click', (e) => {
+            e.preventDefault();
+            actualizarTurno();
+        });
+    }
 }
 
 
@@ -308,53 +315,83 @@ function getTurnos() {
 }
 
 function mostrarLista(data) {
-    const horas = getFromLocalStorage('horas')
+    const userSession = getUserFromStorage();
+    if (!userSession) return; // No mostrar nada si no hay sesión
+
+    const horas = getFromLocalStorage('horas');
     saveTurnosInLocalStorage('turnos', data);
-    const turnos = data;
-    //    console.log(data);
+
+    let turnosFiltrados = data;
+    // Si el usuario no es Admin, filtrar por su email
+    if (userSession.user.role !== 'Admin') {
+        turnosFiltrados = data.filter(turno => turno.mail === userSession.user.email);
+    }
+
     let rows = '';
-    for (let turno of turnos) {
+    for (let turno of turnosFiltrados) {
         const fechaTurnoArray = turno.fecha_turno;
         const fechaTurno = `${fechaTurnoArray[2]}/${fechaTurnoArray[1]}/${fechaTurnoArray[0]}`;
         rows += `
-        
         <tr>
             <th scope="row">${turno.id}</th>
-                <td>${turno.nombre} ${turno.apellido}</td>
-                <td>${turno.mail}</td>
-                <td>${fechaTurno} ${turno.nombre_hora}</td>
-                <td>${turno.tipo_corte}</td>
-                <td>
-                    <button class="btnEditar btn btn-primary" data-id="${turno.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">Modificar</button>
-                    <button class="btnCancelar btn btn-danger" data-id="${turno.id}">Borrar</button>
-                </td>
-        `
+            <td>${turno.nombre} ${turno.apellido}</td>
+            <td>${turno.mail}</td>
+            <td>${fechaTurno} ${turno.nombre_hora}</td>
+            <td>${turno.tipo_corte}</td>
+            <td>
+                <button class="btnEditar btn btn-primary" data-id="${turno.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">Modificar</button>
+                <button class="btnCancelar btn btn-danger" data-id="${turno.id}">Borrar</button>
+            </td>
+        </tr>
+        `;
     }
     document.getElementById('turnosRows').innerHTML = rows;
 
-    const btnCancelar = document.getElementsByClassName('btnCancelar');
+    // Asignar eventos a los botones de la lista
+    const btnCancelar = document.querySelectorAll('.btnCancelar');
     for (const btnCancel of btnCancelar) {
         btnCancel.addEventListener('click', () => {
             const idCancelar = btnCancel.getAttribute('data-id');
-            console.log(idCancelar);
             cancelarTurno(idCancelar);
-        })
+        });
     }
 
-    const btnModificar = document.getElementsByClassName('btnEditar');
+    const btnModificar = document.querySelectorAll('.btnEditar');
     for (const btnEditar of btnModificar) {
         btnEditar.addEventListener('click', () => {
             const idEditar = btnEditar.getAttribute('data-id');
             editarTurno(idEditar);
-            const fechaSeleccionadaNew = document.getElementById('fechaSeleccionadaNew')
+            const fechaSeleccionadaNew = document.getElementById('fechaSeleccionadaNew');
             fechaSeleccionadaNew.min = obtenerFechaActual();
-            selectHoras(horas, 'selectCategoriaHoraNew', 'fechaSeleccionadaNew')
+            selectHoras(horas, 'selectCategoriaHoraNew', 'fechaSeleccionadaNew');
 
             fechaSeleccionadaNew.addEventListener('change', () => {
-                selectHoras(horas, 'selectCategoriaHoraNew', 'fechaSeleccionadaNew')
-            })
-        })
+                selectHoras(horas, 'selectCategoriaHoraNew', 'fechaSeleccionadaNew');
+            });
+        });
+    }
+}
 
+function prefillUserData() {
+    const userSession = getUserFromStorage();
+    if (userSession && userSession.user) {
+        const { name, email } = userSession.user;
+        const nombreInput = document.getElementById('nombre');
+        const apellidoInput = document.getElementById('apellido');
+        const mailInput = document.getElementById('mail');
+
+        if (nombreInput && mailInput) {
+            // Asumimos que el nombre completo está en el campo 'name'
+            const nameParts = name.split(' ');
+            nombreInput.value = nameParts[0] || '';
+            apellidoInput.value = nameParts.slice(1).join(' ') || '';
+            mailInput.value = email;
+
+            // Opcional: deshabilitar campos para que el usuario no los cambie
+            nombreInput.disabled = true;
+            apellidoInput.disabled = true;
+            mailInput.disabled = true;
+        }
     }
 }
 
